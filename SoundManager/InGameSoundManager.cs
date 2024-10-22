@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class InGameSoundManager : MonoBehaviour
 {
     public static InGameSoundManager instance;
-    public Dictionary<string, SoundData> Data = new Dictionary<string, SoundData>(); //»ç¿îµå ÇÃ·¹ÀÌ´Â ÇØ´ç µñ¼Å³Ê¸® Á¢±ÙÇÏ¿© ¿Àµğ¿À¼Ò½º¸¦ ÅëÇØ ÇÃ·¹ÀÌÇÑ´Ù.
+    public Dictionary<string, SoundData> Data = new Dictionary<string, SoundData>(); //ì‚¬ìš´ë“œ í”Œë ˆì´ëŠ” í•´ë‹¹ ë”•ì…”ë„ˆë¦¬ ì ‘ê·¼í•˜ì—¬ ì˜¤ë””ì˜¤ì†ŒìŠ¤ë¥¼ í†µí•´ í”Œë ˆì´í•œë‹¤.
 
     private AudioMixer audioMixer;
     private AudioClip InGame_BG;
@@ -16,7 +16,7 @@ public class InGameSoundManager : MonoBehaviour
     private Slider SFX_Slider;
     private GameObject MainCamera;
 
-    private int SoundBoxKey; //¿ÀºêÁ§Æ® Ç®¸µ¿¡¼­ »ç¿îµå ¹Ú½º¸¦ Ç®¸µÇÑ Key°ªÀ» ÀúÀå.
+    private int SoundBoxKey; //ì˜¤ë¸Œì íŠ¸ í’€ë§ì—ì„œ ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ í’€ë§í•œ Keyê°’ì„ í• ë‹¹í•´ì•¼ í•¨.
 
     void Awake()
     {
@@ -28,35 +28,35 @@ public class InGameSoundManager : MonoBehaviour
         audioMixer = Resources.Load<AudioMixer>("Sound/AudioMixer");
         InGame_BG = Resources.Load<AudioClip>("Sound/BG/InGameBG");
 
-        //BG_Slider = GameObject.Find("PlayCanvas").transform.GetChild(5).GetChild(2).GetChild(2).GetComponent<Slider>(); //ÀÎ°ÔÀÓ UIÃ£¾Æ¼­ Àâ¾Æ¾ßÇÔ
-        //SFX_Slider = GameObject.Find("PlayCanvas").transform.GetChild(5).GetChild(2).GetChild(3).GetComponent<Slider>(); //ÀÎ°ÔÀÓ UIÃ£¾Æ¼­ Àâ¾Æ¾ßÇÔ.
+        //BG_Slider = GameObject.Find("PlayCanvas").transform.GetChild(5).GetChild(2).GetChild(2).GetComponent<Slider>(); //ì¸ê²Œì„ UIì°¾ì•„ì„œ ì¡ì•„ì•¼í•¨
+        //SFX_Slider = GameObject.Find("PlayCanvas").transform.GetChild(5).GetChild(2).GetChild(3).GetComponent<Slider>(); //ì¸ê²Œì„ UIì°¾ì•„ì„œ ì¡ì•„ì•¼í•¨.
         MainCamera = GameObject.Find("MainCamera");
 
-        //BG_Slider.onValueChanged.AddListener(value => SoundManager.instance.BG_Sound = value); // ½½¶óÀÌ´õÀÇ °ªÀÌ º¯°æµÇ¸é ÀÚµ¿À¸·Î ÇÁ·ÎÆÛÆ¼¿¡ Àû¿ë
-        //SFX_Slider.onValueChanged.AddListener(value => SoundManager.instance.SFX_Sound = value); // ½½¶óÀÌ´õÀÇ °ªÀÌ º¯°æµÇ¸é ÀÚµ¿À¸·Î ÇÁ·ÎÆÛÆ¼¿¡ Àû¿ë
+        //BG_Slider.onValueChanged.AddListener(value => SoundManager.instance.BG_Sound = value); // ìŠ¬ë¼ì´ë”ì˜ ê°’ì´ ë³€ê²½ë˜ë©´ ìë™ìœ¼ë¡œ í”„ë¡œí¼í‹°ì— ì ìš©
+        //SFX_Slider.onValueChanged.AddListener(value => SoundManager.instance.SFX_Sound = value); // ìŠ¬ë¼ì´ë”ì˜ ê°’ì´ ë³€ê²½ë˜ë©´ ìë™ìœ¼ë¡œ í”„ë¡œí¼í‹°ì— ì ìš©
 
         ActiveSound(MainCamera, InGame_BG, 5.0f, true, true, true, 0);
     }
 
     private void Start()
     {
-        SoundSetting(0, SoundManager.instance.BG_Sound); //¾À ½ÃÀÛ½Ã ÀÌÀü¾ÀÀÇ ¿É¼ÇÀ» ±×´ë·Î °¡Á®¿Â´Ù.
-        SoundSetting(1, SoundManager.instance.SFX_Sound); //¾À ½ÃÀÛ½Ã ÀÌÀü¾ÀÀÇ ¿É¼ÇÀ» ±×´ë·Î °¡Á®¿Â´Ù.
+        SoundSetting(0, SoundManager.instance.BG_Sound); //ì”¬ ì‹œì‘ì‹œ ì´ì „ì”¬ì˜ ì˜µì…˜ì„ ê·¸ëŒ€ë¡œ ê°€ì ¸ì˜¨ë‹¤.
+        SoundSetting(1, SoundManager.instance.SFX_Sound); //ì”¬ ì‹œì‘ì‹œ ì´ì „ì”¬ì˜ ì˜µì…˜ì„ ê·¸ëŒ€ë¡œ ê°€ì ¸ì˜¨ë‹¤.
 
         //BG_Slider.value = (SoundManager.instance.BG_Sound + 40.0f) / 40.0f;
         //SFX_Slider.value = (SoundManager.instance.SFX_Sound + 40.0f) / 40.0f;
     }
 
-    public void SoundSetting(int option, float value) //ÀÎ°ÔÀÓ ¾ÀÀÇ ÀüÃ¼ÀûÀÎ »ç¿îµå Á¶Àı
+    public void SoundSetting(int option, float value) //ì¸ê²Œì„ ì”¬ì˜ ì „ì²´ì ì¸ ì‚¬ìš´ë“œ ì¡°ì ˆ
     {
         switch (option)
         {
-            case 0: //BG À½·® Á¶Àı
+            case 0: //BG ìŒëŸ‰ ì¡°ì ˆ
                 audioMixer.SetFloat("BG_Volume", value);
 
                 break;
 
-            case 1: //SFX À½·® Á¶Àı
+            case 1: //SFX ìŒëŸ‰ ì¡°ì ˆ
                 audioMixer.SetFloat("SFX_Volume", value);
 
                 break;
@@ -64,16 +64,16 @@ public class InGameSoundManager : MonoBehaviour
     }
 
     public void ActiveSound(GameObject target, AudioClip clip, float MaxDist, bool awakePlay, bool loop, bool reside,int option, float? clipLength = null)
-    {//¼Ò¸®°¡ ³ª´Â ¿ÀºêÁ§Æ®, ¼Ò¸®, ¼Ò¸®°¡ µé¸± ÃÖ´ë °Å¸®, ¹Ù·Î Àç»ıÇÒÁö,¹İº¹ À¯¹«, »ç¿îµå ¹Ú½º¸¦ »óÁÖ ½ÃÅ³Áö,¼Ò¸® Å¸ÀÔ, (¹ÌÀÔ·Â½Ã:Å¬¸³ ±æÀÌ¸¸Å­ Àç»ı/ÀÔ·Â½Ã:°ª ¸¸Å­ Å¬¸³ Àç»ı)
+    {//ì†Œë¦¬ê°€ ë‚˜ëŠ” ì˜¤ë¸Œì íŠ¸, ì†Œë¦¬, ì†Œë¦¬ê°€ ë“¤ë¦´ ìµœëŒ€ ê±°ë¦¬, ë°”ë¡œ ì¬ìƒí• ì§€,ë°˜ë³µ ìœ ë¬´, ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ìƒì£¼ ì‹œí‚¬ì§€,ì†Œë¦¬ íƒ€ì…, (ë¯¸ì…ë ¥ì‹œ:í´ë¦½ ê¸¸ì´ë§Œí¼ ì¬ìƒ/ì…ë ¥ì‹œ:ê°’ ë§Œí¼ í´ë¦½ ì¬ìƒ)
         switch (option)
         {
             case 0: //BG
                 GameObject BackGroundObj = PoolingManager.instance.GetObject(SoundBoxKey);
                 AudioSource BG_audioSource = BackGroundObj.GetComponent<AudioSource>();
-                BackGroundObj.transform.SetParent(target.transform); //¼Ò¸®¸¦ ³»´Â ¿ÀºêÁ§Æ®¿¡ ÀÚ½ÄÀ¸·Î ÀÌµ¿.
-                BackGroundObj.transform.localPosition = Vector3.zero; //ºÎ¸ğÀÇ À§Ä¡·Î ÀÌµ¿.
+                BackGroundObj.transform.SetParent(target.transform); //ì†Œë¦¬ë¥¼ ë‚´ëŠ” ì˜¤ë¸Œì íŠ¸ì— ìì‹ìœ¼ë¡œ ì´ë™.
+                BackGroundObj.transform.localPosition = Vector3.zero; //ë¶€ëª¨ì˜ ìœ„ì¹˜ë¡œ ì´ë™.
 
-                BG_audioSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("BackGround")[0]; //¿Àµğ¿À ¹Í¼­¿¡¼­ Ã£Àº BackGound ±×·ìÁß 1¹øÂ° ±×·ìÀ» ÇÒ´ç.
+                BG_audioSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("BackGround")[0]; //ì˜¤ë””ì˜¤ ë¯¹ì„œì—ì„œ ì°¾ì€ BackGound ê·¸ë£¹ì¤‘ 1ë²ˆì§¸ ê·¸ë£¹ì„ í• ë‹¹.
                 BG_audioSource.playOnAwake = awakePlay;
                 BG_audioSource.clip = clip;
                 BG_audioSource.loop = loop;
@@ -83,30 +83,30 @@ public class InGameSoundManager : MonoBehaviour
 
                 BackGroundObj.SetActive(true);
 
-                if (loop == false && reside == false && clipLength == null) //Å¬¸³ÀÇ ±æÀÌ¸¸Å­ ÇÑ¹ø Àç»ı, »ç¿îµå ¹Ú½º ºñÈ°¼ºÈ­
+                if (loop == false && reside == false && clipLength == null) //í´ë¦½ì˜ ê¸¸ì´ë§Œí¼ í•œë²ˆ ì¬ìƒ, ì‚¬ìš´ë“œ ë°•ìŠ¤ ë¹„í™œì„±í™”
                 {
                     BG_audioSource.Play();
                     StartCoroutine(DisableSoundBox(BackGroundObj, clip.length));
                 }
-                else if (loop == false && reside == false && clipLength != null) //ÁöÁ¤ÇÑ ¸¸Å­ ÇÑ¹ø Àç»ı, »ç¿îµå ¹Ú½º ºñÈ°¼ºÈ­
+                else if (loop == false && reside == false && clipLength != null) //ì§€ì •í•œ ë§Œí¼ í•œë²ˆ ì¬ìƒ, ì‚¬ìš´ë“œ ë°•ìŠ¤ ë¹„í™œì„±í™”
                 {
                     BG_audioSource.Play(); 
                     StartCoroutine(DisableSoundBox(BackGroundObj, clipLength.Value)); 
                 }
-                else if (loop == false && reside == true && clipLength == null) //»ç¿îµå ¹Ú½º¸¦ »óÁÖ½ÃÅ°°í ¿øÇÒ ¶§¸¸ Å¬¸³ÀÇ ±æÀÌ ¸¸Å­ Àç»ıÀ» À§ÇØ µ¥ÀÌÅÍ ÀúÀå
+                else if (loop == false && reside == true && clipLength == null) //ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ìƒì£¼ì‹œí‚¤ê³  ì›í•  ë•Œë§Œ í´ë¦½ì˜ ê¸¸ì´ ë§Œí¼ ì¬ìƒì„ ìœ„í•´ ë°ì´í„° ì €ì¥
                 {
                     Data.Add(clip.name, new SoundData(BackGroundObj, BG_audioSource, clip.length)); 
                 }
-                else if (loop == false && reside == true && clipLength != null) //»ç¿îµå ¹Ú½º¸¦ »óÁÖ½ÃÅ°°í ¿øÇÒ ¶§¸¸ ÁöÁ¤ÇÑ °ª ¸¸Å­ Àç»ıÀ» À§ÇØ µ¥ÀÌÅÍ ÀúÀå
+                else if (loop == false && reside == true && clipLength != null) //ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ìƒì£¼ì‹œí‚¤ê³  ì›í•  ë•Œë§Œ ì§€ì •í•œ ê°’ ë§Œí¼ ì¬ìƒì„ ìœ„í•´ ë°ì´í„° ì €ì¥
                 {
                     Data.Add(clip.name, new SoundData(BackGroundObj, BG_audioSource, clipLength)); 
                 }
-                else if (loop == true && awakePlay == true) //»ç¿îµå ¹Ú½º¸¦ »óÁÖ½ÃÅ°°í ¹İº¹ Àç»ı.
+                else if (loop == true && awakePlay == true) //ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ìƒì£¼ì‹œí‚¤ê³  ë°˜ë³µ ì¬ìƒ.
                 {
                     BG_audioSource.Play();
                     Data.Add(clip.name, new SoundData(BackGroundObj, BG_audioSource, clip.length));
                 }
-                else if (loop == true && awakePlay == false) //»ç¿îµå ¹Ú½º¸¦ »óÁÖ½ÃÅ°°í »ç¿ëÀÚ°¡ ÇÊ¿äÇÒ ¶§¸¸ ¹İº¹ Àç»ı.
+                else if (loop == true && awakePlay == false) //ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ìƒì£¼ì‹œí‚¤ê³  ì‚¬ìš©ìê°€ í•„ìš”í•  ë•Œë§Œ ë°˜ë³µ ì¬ìƒ.
                 {
                     Data.Add(clip.name, new SoundData(BackGroundObj, BG_audioSource, clip.length));
                 }
@@ -116,44 +116,44 @@ public class InGameSoundManager : MonoBehaviour
             case 1: //SFX
                 GameObject SFXObj = PoolingManager.instance.GetObject(10);
                 AudioSource SFX_audioSource = SFXObj.GetComponent<AudioSource>();
-                SFXObj.transform.SetParent(target.transform); //¼Ò¸®¸¦ ³»´Â ¿ÀºêÁ§Æ®¿¡ ÀÚ½ÄÀ¸·Î ÀÌµ¿.
-                SFXObj.transform.localPosition = Vector3.zero; //ºÎ¸ğÀÇ À§Ä¡·Î ÀÌµ¿.
+                SFXObj.transform.SetParent(target.transform); //ì†Œë¦¬ë¥¼ ë‚´ëŠ” ì˜¤ë¸Œì íŠ¸ì— ìì‹ìœ¼ë¡œ ì´ë™.
+                SFXObj.transform.localPosition = Vector3.zero; //ë¶€ëª¨ì˜ ìœ„ì¹˜ë¡œ ì´ë™.
 
-                SFX_audioSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("SFX")[0]; //¿Àµğ¿À ¹Í¼­¿¡¼­ Ã£Àº SFX±×·ìÁß 1¹øÂ° ±×·ìÀ» ÇÒ´ç.
+                SFX_audioSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("SFX")[0]; //ì˜¤ë””ì˜¤ ë¯¹ì„œì—ì„œ ì°¾ì€ SFXê·¸ë£¹ì¤‘ 1ë²ˆì§¸ ê·¸ë£¹ì„ í• ë‹¹.
                 SFX_audioSource.playOnAwake = awakePlay;
                 SFX_audioSource.clip = clip;
                 SFX_audioSource.loop = loop;
                 SFX_audioSource.rolloffMode = AudioRolloffMode.Custom;
                 SFX_audioSource.maxDistance = MaxDist;
                 SFX_audioSource.volume = 1.0f;
-                SFX_audioSource.spatialBlend = 1.0f; //°ø°£ À½Çâ ¼³Á¤, °Å¸®¿¡ µû¶ó ¼Ò¸®°¨¼è°¡ »ı±ä´Ù.
+                SFX_audioSource.spatialBlend = 1.0f; //ê³µê°„ ìŒí–¥ ì„¤ì •, ê±°ë¦¬ì— ë”°ë¼ ì†Œë¦¬ê°ì‡ ê°€ ìƒê¸´ë‹¤.
 
                 SFXObj.SetActive(true);
 
-                if (loop == false && reside == false && clipLength == null) //Å¬¸³ÀÇ ±æÀÌ¸¸Å­ ÇÑ¹ø Àç»ı, »ç¿îµå ¹Ú½º ºñÈ°¼ºÈ­
+                if (loop == false && reside == false && clipLength == null) //í´ë¦½ì˜ ê¸¸ì´ë§Œí¼ í•œë²ˆ ì¬ìƒ, ì‚¬ìš´ë“œ ë°•ìŠ¤ ë¹„í™œì„±í™”
                 {
                     SFX_audioSource.Play();
                     StartCoroutine(DisableSoundBox(SFXObj, clip.length));
                 }
-                else if (loop == false && reside == false && clipLength != null) //ÁöÁ¤ÇÑ ¸¸Å­ ÇÑ¹ø Àç»ı, »ç¿îµå ¹Ú½º ºñÈ°¼ºÈ­
+                else if (loop == false && reside == false && clipLength != null) //ì§€ì •í•œ ë§Œí¼ í•œë²ˆ ì¬ìƒ, ì‚¬ìš´ë“œ ë°•ìŠ¤ ë¹„í™œì„±í™”
                 {
                     SFX_audioSource.Play();
                     StartCoroutine(DisableSoundBox(SFXObj, clipLength.Value));
                 }
-                else if (loop == false && reside == true && clipLength == null) //»ç¿îµå ¹Ú½º¸¦ »óÁÖ½ÃÅ°°í ¿øÇÒ ¶§¸¸ Å¬¸³ÀÇ ±æÀÌ ¸¸Å­ Àç»ıÀ» À§ÇØ µ¥ÀÌÅÍ ÀúÀå
+                else if (loop == false && reside == true && clipLength == null) //ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ìƒì£¼ì‹œí‚¤ê³  ì›í•  ë•Œë§Œ í´ë¦½ì˜ ê¸¸ì´ ë§Œí¼ ì¬ìƒì„ ìœ„í•´ ë°ì´í„° ì €ì¥
                 {
                     Data.Add(clip.name, new SoundData(SFXObj, SFX_audioSource, clip.length));
                 }
-                else if (loop == false && reside == true && clipLength != null) //»ç¿îµå ¹Ú½º¸¦ »óÁÖ½ÃÅ°°í ¿øÇÒ ¶§¸¸ ÁöÁ¤ÇÑ °ª ¸¸Å­ Àç»ıÀ» À§ÇØ µ¥ÀÌÅÍ ÀúÀå
+                else if (loop == false && reside == true && clipLength != null) //ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ìƒì£¼ì‹œí‚¤ê³  ì›í•  ë•Œë§Œ ì§€ì •í•œ ê°’ ë§Œí¼ ì¬ìƒì„ ìœ„í•´ ë°ì´í„° ì €ì¥
                 {
                     Data.Add(clip.name, new SoundData(SFXObj, SFX_audioSource, clipLength));
                 }
-                else if (loop == true && awakePlay == true) //»ç¿îµå ¹Ú½º¸¦ »óÁÖ½ÃÅ°°í ¹İº¹ Àç»ı.
+                else if (loop == true && awakePlay == true) //ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ìƒì£¼ì‹œí‚¤ê³  ë°˜ë³µ ì¬ìƒ.
                 {
                     SFX_audioSource.Play();
                     Data.Add(clip.name, new SoundData(SFXObj, SFX_audioSource, clip.length));
                 }
-                else if (loop == true && awakePlay == false) //»ç¿îµå ¹Ú½º¸¦ »óÁÖ½ÃÅ°°í »ç¿ëÀÚ°¡ ÇÊ¿äÇÒ ¶§¸¸ ¹İº¹ Àç»ı.
+                else if (loop == true && awakePlay == false) //ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ìƒì£¼ì‹œí‚¤ê³  ì‚¬ìš©ìê°€ í•„ìš”í•  ë•Œë§Œ ë°˜ë³µ ì¬ìƒ.
                 {
                     Data.Add(clip.name, new SoundData(SFXObj, SFX_audioSource, clip.length));
                 }
@@ -162,18 +162,18 @@ public class InGameSoundManager : MonoBehaviour
         }
     }
 
-    IEnumerator DisableSoundBox(GameObject soundBox, float delay) //ÀÏÁ¤ ½Ã°£ ÈÄ »ç¿îµå ¹Ú½º ºñÈ°¼ºÈ­
+    IEnumerator DisableSoundBox(GameObject soundBox, float delay) //ì¼ì • ì‹œê°„ í›„ ì‚¬ìš´ë“œ ë°•ìŠ¤ ë¹„í™œì„±í™”
     {
         yield return new WaitForSeconds(delay);
         soundBox.SetActive(false);
         soundBox.transform.SetParent(GameObject.Find(PoolingManager.instance.Data[10].GroupName).transform);
     }
 
-    public void EditSoundBox(string key, bool setActive, AudioClip clip = null) //·çÇÁ»óÅÂÀÎ »ç¿îµå ¹Ú½º¸¦ ÆíÁıÇÏ´Â ÇÔ¼ö (ÆíÁıÇÒ »ç¿îµå¹Ú½º Å°, È°¼ºÈ­ ¿©ºÎ, ±³Ã¼ÇÒ »ç¿îµå Å¬¸³)
+    public void EditSoundBox(string key, bool setActive, AudioClip clip = null) //ë£¨í”„ìƒíƒœì¸ ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ í¸ì§‘í•˜ëŠ” í•¨ìˆ˜ (í¸ì§‘í•  ì‚¬ìš´ë“œë°•ìŠ¤ í‚¤, í™œì„±í™” ì—¬ë¶€, êµì²´í•  ì‚¬ìš´ë“œ í´ë¦½)
     {
-        if (setActive) // »ç¿îµå ¹Ú½º¸¦ °è¼Ó È°¼ºÈ­ ÇÑ´Ù¸é »ç¿îµå Å¬¸³ ±³Ã¼
+        if (setActive) // ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ê³„ì† í™œì„±í™” í•œë‹¤ë©´ ì‚¬ìš´ë“œ í´ë¦½ êµì²´
             Data[key].SoundBox_AudioSource.clip = clip;
-        else // »ç¿îµå ¹Ú½º¸¦ ºñÈ°¼ºÈ­ ÇÑ´Ù¸é 0.1ÃÊÈÄ »ç¿îµå ¹Ú½º ºñÈ°¼ºÈ­
+        else // ì‚¬ìš´ë“œ ë°•ìŠ¤ë¥¼ ë¹„í™œì„±í™” í•œë‹¤ë©´ 0.1ì´ˆí›„ ì‚¬ìš´ë“œ ë°•ìŠ¤ ë¹„í™œì„±í™”
             StartCoroutine(DisableSoundBox(Data[key].SoundBox, 0.1f));
     }
 }
