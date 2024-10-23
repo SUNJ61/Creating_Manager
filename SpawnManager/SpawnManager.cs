@@ -29,18 +29,18 @@ public class SpawnManager : MonoBehaviour
         ListSetting();
     }
 
-    private void ListSetting() //¿¹½Ã ¼±¾ğÇÑ ÄÚµå.
+    private void ListSetting() //ì˜ˆì‹œë¡œ ì„ ì–¸í•œ ì½”ë“œ. (ì—†ì–´ë„ ë¬´ê´€í•˜ë‹¤)
     {
         EX1_SpawnPoint = GetPoint(EX1_RespawnObj);
         EX2_SpawnPoint = GetPoint(EX2_RespawnObj);
         EX2_RandomIdx = MakeIdxList(EX2_SpawnPoint);
 
-        SetActivePos(EX_standard, 0); // EX_standardÀÇ À§Ä¡·Î µñ¼Å³Ê¸® Å°°ªÀÌ 0ÀÎ ¿ÀºêÁ§Æ® 1°³ ¼ÒÈ¯
-        SetActiveFar(EX1_SpawnPoint, EX_standard.transform, 0, 10.0f); // EX_standard¿Í °¡Àå ¸Õ EX1_SpawnPointÀÇ À§Ä¡·Î µñ¼Å³Ê¸® Å°°ªÀÌ 0ÀÎ ¿ÀºêÁ§Æ® 10ÃÊ ÈÄ¿¡ ¼ÒÈ¯.
-        SetActiveRandomPos(EX2_SpawnPoint, 0); // EX2_SpawnPoint°¡ °¡Áø posÁß ·£´ı ÁÂÇ¥·Î µñ¼Å³Ê¸® Å°°ªÀÌ 0ÀÎ ¿ÀºêÁ§Æ®¸¦ ¼ÒÈ¯ÇÑ´Ù. (¸ğµÎ ¼ÒÈ¯ÇÏ¸é ÇØ´ç ¿ÀºêÁ§Æ® Ç®¸µÀ» ´ã°í ÀÖ´ø ±×·ì »èÁ¦.)
+        SetActivePos(EX_standard, 0); // EX_standardì˜ ìœ„ì¹˜ë¡œ ë”•ì…”ë„ˆë¦¬ í‚¤ê°’ì´ 0ì¸ ì˜¤ë¸Œì íŠ¸ 1ê°œ ì†Œí™˜
+        SetActiveFar(EX1_SpawnPoint, EX_standard.transform, 0, 10.0f); // EX_standardì™€ ê°€ì¥ ë¨¼ EX1_SpawnPointì˜ ìœ„ì¹˜ë¡œ ë”•ì…”ë„ˆë¦¬ í‚¤ê°’ì´ 0ì¸ ì˜¤ë¸Œì íŠ¸ 10ì´ˆ í›„ì— ì†Œí™˜.
+        SetActiveRandomPos(EX2_SpawnPoint, 0); // EX2_SpawnPointê°€ ê°€ì§„ posì¤‘ ëœë¤ ì¢Œí‘œë¡œ ë”•ì…”ë„ˆë¦¬ í‚¤ê°’ì´ 0ì¸ ì˜¤ë¸Œì íŠ¸ë¥¼ ì†Œí™˜í•œë‹¤. (ëª¨ë‘ ì†Œí™˜í•˜ë©´ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ í’€ë§ì„ ë‹´ê³  ìˆë˜ ê·¸ë£¹ ì‚­ì œ.)
     }
 
-    public List<Transform> GetPoint(string GetPosName) //Pos¸®½ºÆ® °¡Àú¿À±â.
+    public List<Transform> GetPoint(string GetPosName) //Posë¦¬ìŠ¤íŠ¸ ê°€ì €ì˜¤ê¸°.
     {
         List<Transform> PosList = new List<Transform>();
         var spawn = GameObject.Find(GetPosName).transform;
@@ -53,7 +53,7 @@ public class SpawnManager : MonoBehaviour
         return PosList;
     }
 
-    public List<int> MakeIdxList<T>(List<T> list) //¸®½ºÆ® ±æÀÌ ¸¸Å­ÀÇ ¼ıÀÚ¸¦ °¡Áø ¸®½ºÆ® ÀÛ¼º.
+    public List<int> MakeIdxList<T>(List<T> list) //ë¦¬ìŠ¤íŠ¸ ê¸¸ì´ ë§Œí¼ì˜ ìˆ«ìë¥¼ ê°€ì§„ ë¦¬ìŠ¤íŠ¸ ì‘ì„±.
     {
         List<int> idxList = new List<int>();
 
@@ -63,8 +63,8 @@ public class SpawnManager : MonoBehaviour
         return idxList;
     }  
 
-    public void SetActivePos(GameObject spawnPos, int key) //Æ¯Á¤ ¿ÀºêÁ§Æ® À§Ä¡¿¡ Ç®¸µÇÑ ¿ÀºêÁ§Æ® ¼ÒÈ¯ÇÏ±â
-    {// Æ¯Á¤ ¿ÀºêÁ§Æ®, Ç®¸µ¸Å´ÏÀú¿¡¼­ ¼ÒÈ¯ ÇÏ°í ½ÍÀº ¿ÀºêÁ§Æ®ÀÇ key°ª 
+    public void SetActivePos(GameObject spawnPos, int key) //íŠ¹ì • ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ì— í’€ë§í•œ ì˜¤ë¸Œì íŠ¸ ì†Œí™˜í•˜ê¸°
+    {// íŠ¹ì • ì˜¤ë¸Œì íŠ¸, í’€ë§ë§¤ë‹ˆì €ì—ì„œ ì†Œí™˜ í•˜ê³  ì‹¶ì€ ì˜¤ë¸Œì íŠ¸ì˜ keyê°’ 
         if (spawnPos != null)
         {
             GameObject ex = PoolingManager.instance.GetObject(key);
@@ -74,27 +74,27 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void SetActiveFar(List<Transform> SpawnPoint, Transform standard, int key, float Delay) // Ã¹ ¼ÒÈ¯¿¡ È£Ãâ
-    {// ½ºÆùÆ÷ÀÎÆ® ¸®½ºÆ®, ½ºÆùÆ÷ÀÎÆ®¿Í °Å¸®¸¦ °è»êÇÒ À§Ä¡, ¼ÒÈ¯ÇÏ°í½ÍÀº ¿ÀºêÁ§Æ®ÀÇ Å°°ª, ¼ÒÈ¯ µô·¹ÀÌ
+    public void SetActiveFar(List<Transform> SpawnPoint, Transform standard, int key, float Delay) // ì²« ì†Œí™˜ì— í˜¸ì¶œ
+    {// ìŠ¤í°í¬ì¸íŠ¸ ë¦¬ìŠ¤íŠ¸, ìŠ¤í°í¬ì¸íŠ¸ì™€ ê±°ë¦¬ë¥¼ ê³„ì‚°í•  ìœ„ì¹˜, ì†Œí™˜í•˜ê³ ì‹¶ì€ ì˜¤ë¸Œì íŠ¸ì˜ í‚¤ê°’, ì†Œí™˜ ë”œë ˆì´
         GameObject ex = PoolingManager.instance.GetObject(key);
         if (ex != null)
             StartCoroutine(RespawnWait(SpawnPoint, standard, ex, Delay));
     }
 
-    public void RespawnFar(List<Transform> SpawnPoint, Transform standard, GameObject RespawnObj, float Delay) // ±âÁ¸¿¡ ¼ÒÈ¯ÇÑ ¿ÀºêÁ§Æ®¸¦ Àç¼ÒÈ¯ ÇÒ °æ¿ì È£Ãâ
-    {// ½ºÆùÆ÷ÀÎÆ® ¸®½ºÆ®, ½ºÆùÆ÷ÀÎÆ®¿Í °Å¸®¸¦ °è»êÇÒ À§Ä¡, ±âÁ¸¿¡ ¼ÒÈ¯ÇÑ ¿ÀºêÁ§Æ®, ¼ÒÈ¯ µô·¹ÀÌ
+    public void RespawnFar(List<Transform> SpawnPoint, Transform standard, GameObject RespawnObj, float Delay) // ê¸°ì¡´ì— ì†Œí™˜í•œ ì˜¤ë¸Œì íŠ¸ë¥¼ ì¬ì†Œí™˜ í•  ê²½ìš° í˜¸ì¶œ
+    {// ìŠ¤í°í¬ì¸íŠ¸ ë¦¬ìŠ¤íŠ¸, ìŠ¤í°í¬ì¸íŠ¸ì™€ ê±°ë¦¬ë¥¼ ê³„ì‚°í•  ìœ„ì¹˜, ê¸°ì¡´ì— ì†Œí™˜í•œ ì˜¤ë¸Œì íŠ¸, ì†Œí™˜ ë”œë ˆì´
         StartCoroutine(RespawnWait(SpawnPoint, standard, RespawnObj, Delay));
     }
 
-    IEnumerator RespawnWait(List<Transform> SpawnPoint, Transform Standard, GameObject RespawnObj, float Delay) // ÀÏÁ¤½Ã°£ ÈÄ ÇÃ·¹ÀÌ¾î¿Í °¡Àå ¸Õ °÷¿¡¼­ ¿ÀºêÁ§Æ® ¼ÒÈ¯
+    IEnumerator RespawnWait(List<Transform> SpawnPoint, Transform Standard, GameObject RespawnObj, float Delay) // ì¼ì •ì‹œê°„ í›„ í”Œë ˆì´ì–´ì™€ ê°€ì¥ ë¨¼ ê³³ì—ì„œ ì˜¤ë¸Œì íŠ¸ ì†Œí™˜
     {
         yield return new WaitForSeconds(Delay);
         FarRespawnSetup(SpawnPoint, RespawnObj, Standard);
         RespawnObj.SetActive(true);
     }
 
-    public void SetActiveRandomPos(List<Transform> SpawnPoint, int key) // ·£´ı À§Ä¡ ¼ÒÈ¯
-    {// ½ºÆùÆ÷ÀÎÆ® ¸®½ºÆ®, ¼ÒÈ¯ÇÏ°í½ÍÀº ¿ÀºêÁ§Æ®ÀÇ Å°°ª
+    public void SetActiveRandomPos(List<Transform> SpawnPoint, int key) // ëœë¤ ìœ„ì¹˜ ì†Œí™˜
+    {// ìŠ¤í°í¬ì¸íŠ¸ ë¦¬ìŠ¤íŠ¸, ì†Œí™˜í•˜ê³ ì‹¶ì€ ì˜¤ë¸Œì íŠ¸ì˜ í‚¤ê°’
         List<GameObject> PoolList = PoolingManager.instance.Data[key].Pool_List;
         List<int> objIdxList = MakeIdxList(SpawnPoint);
 
@@ -110,7 +110,7 @@ public class SpawnManager : MonoBehaviour
         Destroy(exGroup);
     }
 
-    private void FarRespawnSetup(List<Transform> SpawnPoint, GameObject RespawnObj, Transform Standard) //¸Õ ¸®½ºÆù À§Ä¡ Ã£´Â ·ÎÁ÷
+    private void FarRespawnSetup(List<Transform> SpawnPoint, GameObject RespawnObj, Transform Standard) //ë¨¼ ë¦¬ìŠ¤í° ìœ„ì¹˜ ì°¾ëŠ” ë¡œì§
     {
         float Respawn_Dist = (SpawnPoint[0].position - Standard.position).magnitude;
         Vector3 Respawn_Pos = SpawnPoint[0].position;
@@ -124,7 +124,7 @@ public class SpawnManager : MonoBehaviour
         RespawnObj.transform.position = Respawn_Pos;
     }
 
-    private int GetRandomIdx(List<int> RandomIdx) //·£´ı°ª »Ì±â.
+    private int GetRandomIdx(List<int> RandomIdx) //ëœë¤ê°’ ë½‘ê¸°.
     {
         int i = Random.Range(0, RandomIdx.Count);
         int idx = RandomIdx[i];
