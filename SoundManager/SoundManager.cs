@@ -4,7 +4,7 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
-    private float BG_sound = 0f; //���ú� //123123 -40 ~ 0 
+    private float BG_sound = 0f;
     public float BG_Sound
     {
         get { return BG_sound; }
@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private float SFX_sound = 0f; //���ú� ���� //123123 (value * 100.0f) - 80.0f; ���)
+    private float SFX_sound = 0f;
     public float SFX_Sound
     {
         get { return SFX_sound; }
@@ -46,7 +46,7 @@ public class SoundManager : MonoBehaviour
     {
         switch (option)
         {
-            case 0: //BG ����
+            case 0:
                 if (LobbySoundManager.instance != null)
                     LobbySoundManager.instance.SoundSetting(option, value);
                 else if (InGameSoundManager.instance != null)
@@ -54,7 +54,7 @@ public class SoundManager : MonoBehaviour
 
                 break;
 
-            case 1: //SFX 
+            case 1:
                 if (LobbySoundManager.instance != null)
                     LobbySoundManager.instance.SoundSetting(option, value);
                 else if (InGameSoundManager.instance != null)
