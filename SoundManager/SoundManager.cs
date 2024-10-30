@@ -4,7 +4,7 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
-    private float BG_sound = 0f; //���ú� ���� -40 ~ 0 
+    private float BG_sound = 0f; //���ú� //123123 -40 ~ 0 
     public float BG_Sound
     {
         get { return BG_sound; }
@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private float SFX_sound = 0f; //���ú� ���� -40 ~ 0 (-80~20�� (value * 100.0f) - 80.0f; ���)
+    private float SFX_sound = 0f; //���ú� ���� //123123 (value * 100.0f) - 80.0f; ���)
     public float SFX_Sound
     {
         get { return SFX_sound; }
